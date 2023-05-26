@@ -14,7 +14,7 @@ public class numberslidinggame {
         }
 
         Collections.shuffle(numbers);
-        for (int i = 0; i < board.length; i++) {//create grid
+        for (int i = 0; i < board.length; i++) {// create grid
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = numbers.get(count);
                 count++;
@@ -23,44 +23,47 @@ public class numberslidinggame {
         }
 
         printBoard(board);
-        System.out.println("BEGIN");
-
-        String choice = sc.nextLine();
-       
+        System.out.println("BEGIN SWAPPING");
+        // get coordinates
         int rows1 = sc.nextInt();
         int column1 = sc.nextInt();
-         int rows2 = sc.nextInt();
+        int rows2 = sc.nextInt();
         int column2 = sc.nextInt();
+        // swap
+        if (rows1 == rows2 + 1 || rows1 == rows2 - 1) {
+            if (column1 == column2 + 1 || column1 == column2 - 1) {
+                int temp = board[rows1][column1];
+                board[rows1][column1] = board[rows2][column2];
+                board[rows2][column2] = temp;
+            }else{
+                System.out.println("Invalid. Try Again.");
+                rows1 = sc.nextInt();
+                column1 = sc.nextInt();
+                rows2 = sc.nextInt();
+                column2 = sc.nextInt();
+                printBoard(board);
+            }
+        }else{
+            System.out.println("Invalid. Try Again.");
+            rows1 = sc.nextInt();
+            column1 = sc.nextInt();
+            rows2 = sc.nextInt();
+            column2 = sc.nextInt();
+            printBoard(board);
+        }
        
-        int temp = board[rows1][column1];
-        board[rows1][column1] = board[rows2][column2];
-        board[rows2][column2] = temp;
-       // swap(numbers,i, j);
-        count = 0;
-       
-        // for (int row = 0; row < board.length; row++) {
-        //     for (int col = 0; col < board[col].length; col++) {
-        //         board[row][col] = numbers.get(count);
-        //         count++;
 
-        //     }
-        // }
-        printBoard(board);
+       
 
     }
 
-    public static void swap(ArrayList<?> array, int i, int j) {
-        Collections.swap(array, i, j);
-
-    }
-
-    public static void printBoard(int[][] board) {
+    public static void printBoard(int[][] board) {// print out grid
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                if(board[i][j] == 0){
+            for (int j = 0; j < board[i].length; j++) {// spacing
+                if (board[i][j] == 0) {
                     System.out.printf(" %2s ", " ");
-                }else{
-                System.out.printf(" %2s ", board[i][j]);
+                } else {
+                    System.out.printf(" %2s ", board[i][j]);
                 }
             }
             System.out.println();
