@@ -14,7 +14,7 @@ public class numberslidinggame {
         }
 
         Collections.shuffle(numbers);
-        for (int i = 0; i < board.length; i++) {
+        for (int i = 0; i < board.length; i++) {//create grid
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = numbers.get(count);
                 count++;
@@ -26,22 +26,25 @@ public class numberslidinggame {
         System.out.println("BEGIN");
 
         String choice = sc.nextLine();
-        int column1 = sc.nextInt();
+       
         int rows1 = sc.nextInt();
+        int column1 = sc.nextInt();
+         int rows2 = sc.nextInt();
         int column2 = sc.nextInt();
-        int rows2 = sc.nextInt();
-        int i = board[column1][rows1];
-        int j = board[column2][rows2];
-        swap(numbers,i, j);
+       
+        int temp = board[rows1][column1];
+        board[rows1][column1] = board[rows2][column2];
+        board[rows2][column2] = temp;
+       // swap(numbers,i, j);
         count = 0;
        
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[col].length; col++) {
-                board[row][col] = numbers.get(count);
-                count++;
+        // for (int row = 0; row < board.length; row++) {
+        //     for (int col = 0; col < board[col].length; col++) {
+        //         board[row][col] = numbers.get(count);
+        //         count++;
 
-            }
-        }
+        //     }
+        // }
         printBoard(board);
 
     }
