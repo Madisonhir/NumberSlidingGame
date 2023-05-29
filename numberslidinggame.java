@@ -28,15 +28,14 @@ public class numberslidinggame {
 
             }
         }
-        System.out.println(BOLD + RED2 + "_\\|-|-|-|-|-|-|/_");
-        System.out.println("_ " + RED1 + "Number  Slide" + RED2 + " _");
-        System.out.println(RED2 + " /|-|-|-|-|-|-|\\");
+        System.out.println(BOLD + RED2 + "                _\\|-|-|-|-|-|-|/_");
+        System.out.println("                _ " + RED1 + "Number  Slide" + RED2 + " _");
+        System.out.println(RED2 + "                 /|-|-|-|-|-|-|\\");
         System.out.println();
-        System.out.print(REDBKGND);
         printBoard(board);
         System.out.print(RESET);
-        System.out.println("BEGIN SWAPPING");
-        System.out.println("give the y then x coordinate of the blank position");
+        System.out.println("                 BEGIN SWAPPING");
+        System.out.println("Give the y then x coordinate of the blank position");
         System.out.println("Give the y and x position of the number you wish to swap");
         // get coordinates
         int rows1 = sc.nextInt();// y coordinate 1
@@ -62,7 +61,6 @@ public class numberslidinggame {
                 board[rows2][column2] = temp;
                 movesMade++;
                 System.out.println("Moves: " + movesMade);
-                System.out.print(REDBKGND);
                 printBoard(board);
                 System.out.print(RESET);
 
@@ -85,11 +83,13 @@ public class numberslidinggame {
     public static void printBoard(int[][] board) {// print out grid
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {// spacing
+                if(board[i][j] == board[0][0] || board[i][j] == board[1][0] || board[i][j] == board[2][0] || board[i][j] == board[3][0]){
+                    System.out.print( RESET + "                ");
+                    System.out.print(REDBKGND);
+                }
                 if (board[i][j] == 0) {
-
                     System.out.printf(" %2s ", " ");
                 } else {
-
                     System.out.printf(" %2s ", board[i][j]);
                 }
             }
