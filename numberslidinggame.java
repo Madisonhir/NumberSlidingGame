@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class numberslidinggame {
+public class numberslidinggame { 
     public static final String RESET = "\u001B[0m";
     public static final String REDBKGND = "\u001B[41m";
     public static final String GREEN = "\u001B[42m";
@@ -15,13 +15,13 @@ public class numberslidinggame {
         int count = 0;
         int[][] board = new int[4][4];
         ArrayList<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 16; i++) {//Creates array list
             numbers.add(i);
 
         }
 
         Collections.shuffle(numbers);
-        for (int i = 0; i < board.length; i++) {// create grid
+        for (int i = 0; i < board.length; i++) {// create grid from array
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = numbers.get(count);
                 count++;
@@ -29,7 +29,7 @@ public class numberslidinggame {
             }
         }
         System.out.println(BOLD + RED2 + "                _\\|-|-|-|-|-|-|/_");
-        System.out.println("                _ " + RED1 + "Number  Slide" + RED2 + " _");
+        System.out.println("               ~_ " + RED1 + "Number  Slide" + RED2 + " _~");
         System.out.println(RED2 + "                 /|-|-|-|-|-|-|\\");
         System.out.println();
         printBoard(board);
@@ -55,10 +55,12 @@ public class numberslidinggame {
             }
             if ((rows1 == rows2 + 1 || rows1 == rows2 - 1 || rows1 == rows2)
                     && (column1 == column2 + 1 || column1 == column2 - 1 || column1 == column2)
-                    && (board[rows1][column1] == 0 || board[rows2][column2] == 0)) {//
+                    && (board[rows1][column1] == 0 || board[rows2][column2] == 0)) {// Input requirements
+                // Swap code
                 int temp = board[rows1][column1];
                 board[rows1][column1] = board[rows2][column2];
                 board[rows2][column2] = temp;
+                // Move counter for score
                 movesMade++;
                 System.out.println("Moves: " + movesMade);
                 printBoard(board);
@@ -67,33 +69,40 @@ public class numberslidinggame {
             } else {
                 System.out.println("Invalid. Try Again.");// improper input
             }
-
+            // input
             rows1 = sc.nextInt();
             column1 = sc.nextInt();
             rows2 = sc.nextInt();
             column2 = sc.nextInt();
 
         }
+        // Solved board
         System.out.print(GREEN);
         printBoard(board);
         System.out.print(RESET);
 
     }
-
+/**
+ * Prints out board
+ * Changes 0 to a blank space for swapping
+ * @param board
+ */
     public static void printBoard(int[][] board) {// print out grid
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {// spacing
-                if(board[i][j] == board[0][0] || board[i][j] == board[1][0] || board[i][j] == board[2][0] || board[i][j] == board[3][0]){
-                    System.out.print( RESET + "                ");
+                if (board[i][j] == board[i][0] || board[i][j] == board[i][0] || board[i][j] == board[i][0]
+                        || board[i][j] == board[i][0]) {
+                    System.out.print(RESET + "                ");
                     System.out.print(REDBKGND);
                 }
                 if (board[i][j] == 0) {
-                    System.out.printf(" %2s ", " ");
+                    System.out.printf(" %2.5s ", " ");// blank space for shuffle
                 } else {
-                    System.out.printf(" %2s ", board[i][j]);
+                    System.out.printf(" %2.5s ", board[i][j]);// Numbers 1 - 15
+                    
                 }
             }
-            System.out.println();
+            System.out.println(RESET);
         }
     }
 
