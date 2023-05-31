@@ -77,9 +77,13 @@ public class numberslidinggame {
 
         }
         // Solved board
+        if(movesMade > 50){
+            System.out.println("Wow that took you a while...");
+        }
         System.out.print(GREEN);
         printBoard(board);
         System.out.print(RESET);
+        System.out.print("Moves: " + movesMade);
 
     }
 /**
